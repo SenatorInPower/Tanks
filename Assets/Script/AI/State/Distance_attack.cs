@@ -7,6 +7,7 @@ namespace TankState
 {
     public class Distance_attack : ITankState, IHP, IAtack, IMove
     {
+        
         private Tank tank;
         public Distance_attack(Tank tank)
         {
