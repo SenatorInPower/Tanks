@@ -1,4 +1,4 @@
-﻿using Assets.Script.AI.Controller;
+﻿using Script.AI.Controller;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

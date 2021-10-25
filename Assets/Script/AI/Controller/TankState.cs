@@ -4,7 +4,7 @@ using System;
 using TankInterface;
 using UnityEngine;
 
-namespace Script.AI
+namespace Script.AI.Controller
 {
     public enum State
 {

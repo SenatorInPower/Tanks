@@ -4,7 +4,7 @@ using System;
 using TankInterface;
 using UnityEngine;
 
-namespace Assets.Script.AI.Controller
+namespace Script.AI.Controller
 {
     public struct Stats
     {
