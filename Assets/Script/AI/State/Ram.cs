@@ -1,9 +1,9 @@
-using Assets.Script.AI;
+
 using System.Collections;
 using System.Collections.Generic;
 using TankInterface;
 using UnityEngine;
-namespace TankState
+namespace Script.AI.States
 {
     public class Ram : ITankState, IHP
     {
@@ -13,8 +13,8 @@ namespace TankState
         private int _maxHP;
         public int MaxHP { get => _maxHP; set => _maxHP = value; }
 
-        private Tank tank;
-        public Ram(Tank tank)
+        private TankState tank;
+        public Ram(TankState tank)
         {
             this.tank = tank;   
         }

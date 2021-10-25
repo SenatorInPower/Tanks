@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace Assets.Script.AI
+namespace Script.AI
 {
     public interface ITankState
     {

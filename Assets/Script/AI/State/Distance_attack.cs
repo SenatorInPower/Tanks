@@ -1,9 +1,8 @@
-using Assets.Script.AI;
 using System.Collections;
 using System.Collections.Generic;
 using TankInterface;
 using UnityEngine;
-namespace TankState
+namespace Script.AI.States
 {
     public class Distance_attack : ITankState, IHP
     {
@@ -12,8 +11,8 @@ namespace TankState
 
         private int _maxHP;
         public int MaxHP { get => _maxHP; set => _maxHP = value; }
-        private Tank tank;
-        public Distance_attack(Tank tank)
+        private TankState tank;
+        public Distance_attack(TankState tank)
         {
             this.tank = tank;
         }

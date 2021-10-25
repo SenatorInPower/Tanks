@@ -1,21 +1,21 @@
-using Assets.Script.AI;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using TankInterface;
 
-namespace TankState
+namespace Script.AI.States
 {
     public class Coordinator : ITankState
     {
        
-        private Tank tank;
+        private TankState tank;
         static bool theLead;
         //private static Coordinator Coordinators { get; set; }
-        static List<Tank> tanks;
+        static List<TankState> tanks;
      
 
-        public Coordinator(List<Tank> tanks, Tank tankCoordinator )
+        public Coordinator(List<TankState> tanks, TankState tankCoordinator )
         {
             
             this.tank = tankCoordinator;
