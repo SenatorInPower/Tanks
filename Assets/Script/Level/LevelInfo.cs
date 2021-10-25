@@ -6,41 +6,48 @@ namespace Script.AI.Controller
 {
     public class LevelInfo : SerializedMonoBehaviour
     {
+        [SerializeField]
+        private _AllSettings AllSettings;
+        [SerializeField]
 
-        public _AllSettings AllSettings;
-        public State State;
+        private State State;
+        [SerializeField]
+       
 
         [ShowIf("State", State.Coordinator)]
-        public _Coordinator Coordinator;
+        private _Coordinator Coordinator;
+        [SerializeField]
 
         [ShowIf("State", State.Zone_protection)]
-        public _ZoneProtaction ZoneProtaction;
+        private _ZoneProtaction ZoneProtaction;
+        [SerializeField]
 
         [ShowIf("State", State.Ram)]
-        public _Ram Ram;
+        private _Ram Ram;
+        [SerializeField]
 
         [ShowIf("State", State.Distance_attack)]
-        public _DistanceAtack DistanceAtack;
+        private _DistanceAtack DistanceAtack;
 
-        public struct _AllSettings
+        private struct _AllSettings
         {
             public BoxCollider territory;
         }
-        public struct _Coordinator
+        private struct _Coordinator
         {
 
         }
-        public struct _ZoneProtaction
+        private struct _ZoneProtaction
         {
             public List<BoxCollider> protectZone;
         }
-        public struct _Ram
+        private struct _Ram
         {
-            public GameObject particleRam;
+            private GameObject particleRam;
         }
-        public struct _DistanceAtack
+        private struct _DistanceAtack
         {
-            public int MinDistenceAtack;
+            private int MinDistenceAtack;
         }
 
 

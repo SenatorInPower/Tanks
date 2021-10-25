@@ -13,7 +13,10 @@ namespace Script.AI.States
         {
             this.tank = tank;
         }
+        void MoveToPoint()
+        {
 
+        }
         public IEnumerator Update()
         {
             throw new System.NotImplementedException();

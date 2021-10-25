@@ -17,22 +17,23 @@ namespace Script.AI.Controller
 
     public class TankState
     {
-
-
-       
         [SerializeField]
-        private State condition;
+        private State State;
 
-       
+        internal TankStats tankStats;
 
+        internal LevelInfo levelInfo;    
+     
         private ITankState _IState;
 
 
-        public TankState(State state)
+        public TankState(State State, TankStats tankStats, LevelInfo levelInfo)
         {
-            condition = state;
-            
-            StateInit(state);
+            this.State = State;
+            this.tankStats=tankStats;
+            this.levelInfo = levelInfo;
+
+            StateInit(State);
         }
 
         

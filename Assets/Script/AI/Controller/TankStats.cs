@@ -1,6 +1,4 @@
-﻿using Assets.Script.AI.Controller;
-using Controller.CollisionControl;
-using Script.AI;
+﻿using Controller.CollisionControl;
 using System;
 using TankInterface;
 using UnityEngine;
@@ -24,35 +22,29 @@ namespace Script.AI.Controller
 
     public class TankStats : IDisposable, IHP, IMove
     {
-        
 
         [SerializeField]
-        private DamageForElement damageForElement;
+        private DamageForElement DamageForElement;
 
         [SerializeField]
-        private Stats stats;
+        private Stats Stats;
 
         private Action<DamageType, int> actionDamage;
 
- 
 
-        public int Speed { get => stats.Speed; set => stats.Speed = value; }
-        public int HP { get => stats.HP; set { stats.HP = value; if (stats.HP < 1) { Dead(); } } }
+        public int Speed { get => Stats.Speed; set => Stats.Speed = value; }
+        public int HP { get => Stats.HP; set { Stats.HP = value; if (Stats.HP < 1) { Dead(); } } }
         public int MaxHP { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-
-        public TankStats(Stats stats, DamageForElement damageForElement, CollisionAction collisionAction) 
+        public TankStats(Stats Stats, DamageForElement DamageForElement, CollisionAction collisionAction)
         {
 
-            this.stats = stats;
-            this.damageForElement = damageForElement;
+            this.Stats = Stats;
+            this.DamageForElement = DamageForElement;
             actionDamage += actionDamage;
-            collisionAction.Init(damageForElement, actionDamage);
+            collisionAction.Init(DamageForElement, actionDamage);
 
         }
-
-    
-
         public void Dispose()
         {
             actionDamage -= actionDamage;
@@ -63,10 +55,10 @@ namespace Script.AI.Controller
             switch (damageType)
             {
                 case DamageType.Projectile:
-                    stats.HP = -damage;
+                    Stats.HP = -damage;
                     break;
                 case DamageType.Ram:
-                    stats.HP = 0;
+                    Stats.HP = 0;
                     break;
                 default:
                     break;
