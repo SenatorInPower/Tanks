@@ -1,8 +1,8 @@
 ﻿namespace TankInterface
 {
-    public interface IMove 
+    public interface IMove
     {
-
-        public void Move();
+        public int Speed { get; set; }
+       
     }
 }

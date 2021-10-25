@@ -1,28 +1,39 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class Collision : MonoBehaviour
+namespace Controller.CollisionControl
 {
-    public string partName;
-    const string tagTank = "Tank";
-    const string tagProjectile = "Projectile";
-    Action<DamageType,int> actionDamage;
-    private int partDamage;
-    public void Init(int damage, Action<DamageType,int> actionDamage)
-    {
-        this.actionDamage = actionDamage;
-        partDamage = damage;
-    }
-    private void OnCollisionEnter(UnityEngine.Collision collision)
+    public class Collision : MonoBehaviour
     {
 
-        if (collision.transform.tag == tagTank)
+        const string tagTank = "Tank";
+        const string tagProjectile = "Projectile";
+
+        Action<DamageType, int> actionDamage;
+       private int partDamage;
+
+      
+
+        public void Init(int damage, Action<DamageType, int> actionDamage)
         {
-            actionDamage.Invoke(DamageType.Projectile, partDamage);
+            this.actionDamage = actionDamage;
+            partDamage = damage;
+            
         }
-        else if (collision.transform.tag == tagProjectile)
+        private void OnCollisionEnter(UnityEngine.Collision collision)
         {
-            actionDamage.Invoke(DamageType.Ram, partDamage);
+
+            if (collision.transform.tag == tagTank)
+            {
+                actionDamage.Invoke(DamageType.Projectile, partDamage);
+            }
+            else if (collision.transform.tag == tagProjectile)
+            {
+                actionDamage.Invoke(DamageType.Ram, partDamage);
+            }
+
         }
 
     }
