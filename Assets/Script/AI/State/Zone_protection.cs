@@ -15,7 +15,7 @@ namespace Script.AI.States
 
         public IEnumerator Update()
         {
-            
+            yield return null;
         }
     }
 }

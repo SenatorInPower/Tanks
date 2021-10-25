@@ -48,7 +48,7 @@ namespace Script.AI.Controller
                     _IState = new Distance_attack(this);
                     break;
                 case State.Distance_attack:
-                    _IState = new Coordinator(list, this,  );
+                   // _IState = new Coordinator(list, this,  );
                     break;
                 case State.Ram:
                     _IState = new Ram(this);
