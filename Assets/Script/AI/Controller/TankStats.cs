@@ -1,4 +1,5 @@
-﻿using Controller.CollisionControl;
+﻿using Assets.Script.AI.Controller;
+using Controller.CollisionControl;
 using Script.AI;
 using System;
 using TankInterface;
@@ -23,6 +24,8 @@ namespace Script.AI.Controller
 
     public class TankStats : IDisposable, IHP, IMove
     {
+        
+
         [SerializeField]
         private DamageForElement damageForElement;
 
@@ -38,7 +41,7 @@ namespace Script.AI.Controller
         public int MaxHP { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
 
-        public TankStats(Stats stats, DamageForElement damageForElement, CollisionAction collisionAction)
+        public TankStats(Stats stats, DamageForElement damageForElement, CollisionAction collisionAction) 
         {
 
             this.stats = stats;
@@ -47,6 +50,8 @@ namespace Script.AI.Controller
             collisionAction.Init(damageForElement, actionDamage);
 
         }
+
+    
 
         public void Dispose()
         {
