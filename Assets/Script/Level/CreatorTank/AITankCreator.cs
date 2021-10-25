@@ -2,26 +2,24 @@
 using Script.AI.Controller;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
+using TankInterface;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace Assets.Script.AI.Controller
 {
-    public class TankCreator : SerializedMonoBehaviour
+    public class AITankCreator : SerializedMonoBehaviour
     {
-        
 
-        internal static Dictionary<byte, TankState> Tanks;
+        internal IHiroPosition hiroPosition;
+
+        internal static Dictionary<byte, TankState> EnemysTanks;
 
         [SerializeField]
-        private Dictionary<State, byte> CriateTankAtState;
+        private Dictionary<State, byte> CriateEnemysTankAtState;
 
         [SerializeField]
         private LevelInfo LevelInfo;
-
-        [SerializeField]
-        private GameObject TankPlayer;
-
 
         [SerializeField]
         private GameObject TankEnemys;
@@ -32,6 +30,7 @@ namespace Assets.Script.AI.Controller
 
         [BoxGroup("Stats")]
         [ShowIf("NullCheck")]
+
         [SerializeField]
         private DamageForElement damageForElement;
 
@@ -40,10 +39,9 @@ namespace Assets.Script.AI.Controller
         [SerializeField]
         private Stats stats;
 
-
         private bool NullCheck()
         {
-            if (TankPlayer!=null&& TankEnemys!=null)
+            if (TankEnemys != null)
             {
                 return true;
             }
@@ -52,26 +50,44 @@ namespace Assets.Script.AI.Controller
                 return false;
             }
         }
+
+        [Button]
+        void SetState(State state, byte tankID)
+        {
+            if (EnemysTanks[tankID] != null)
+            {
+                EnemysTanks[tankID].StateInit(state);
+            }
+        }
+
         void CriateEnemys()
         {
+            EnemysTanks = new Dictionary<byte, TankState>();
             byte tankID = 0;
-            foreach (var item in CriateTankAtState)
+            foreach (var item in CriateEnemysTankAtState)
             {
                 for (byte i = 0; i < item.Value; i++)
                 {
-                   
-                  
+
+
                     GameObject enemysTank = Instantiate(TankEnemys, LevelInfo.RandomPositionInTerritory(), Quaternion.identity);
                     CollisionAction collisionAction = enemysTank.GetComponent<CollisionAction>();
-                    NavMeshAgent navMeshAgent=enemysTank.GetComponent<NavMeshAgent>();  
-                    TankStats tankStats = new TankStats(stats, navMeshAgent, damageForElement, collisionAction);
-                    TankState tankState = new TankState(item.Key, tankStats, LevelInfo) ;
+                    NavMeshAgent navMeshAgent = enemysTank.GetComponent<NavMeshAgent>();
+                    TankStats tankStats = new TankStats(stats, navMeshAgent, hiroPosition, damageForElement, collisionAction);
+                    TankState tankState = new TankState(item.Key, tankStats, LevelInfo);
 
                     tankID++;
-                    Tanks.Add(tankID, tankState);
+                    EnemysTanks.Add(tankID, tankState);
                 }
-            }        
+            }
 
+        }
+        private void UpdateAllTank()
+        {
+            foreach (TankState tank in EnemysTanks.Values)
+            {
+                StartCoroutine(tank._IState.Update());
+            }
         }
 
     }

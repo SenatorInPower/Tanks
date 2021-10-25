@@ -10,8 +10,7 @@ namespace Script.AI.States
        
         private TankState tank;
         public Distance_attack(TankState tank)
-        {
-         
+        {         
             this.tank = tank;
         }
         void MoveToPoint()
@@ -20,7 +19,17 @@ namespace Script.AI.States
         }
         public IEnumerator Update()
         {
-            throw new System.NotImplementedException();
+            throw new System.NotImplementedException();//стреляет на определенной дистации и меняет позицию
+        }
+
+        public IEnumerator Atack()
+        {
+            throw new System.NotImplementedException();// стреляет на своей дистанции если попадут в ответ ,то сменить позицию
+        }
+
+        public IEnumerator Move()
+        {
+            throw new System.NotImplementedException();// меняет позицию после попадания
         }
     }
 }

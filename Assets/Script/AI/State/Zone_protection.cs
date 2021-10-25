@@ -13,9 +13,22 @@ namespace Script.AI.States
             this.tank = tank;
         }
 
+        public IEnumerator Atack()
+        {
+            throw new System.NotImplementedException();  //стреляет после возьезда в зону на
+                                                         //свою дистанцию ,если не
+                                                         //дастает стреляет просто так
+                                                         //в сторону игрока
+        }
+
+        public IEnumerator Move()
+        {
+            throw new System.NotImplementedException();// двигается к оборонительным позициям
+        }
+
         public IEnumerator Update()
         {
-            yield return null;
+            yield return null;// пришел в позицию , стреляет,меняет позицию
         }
     }
 }
