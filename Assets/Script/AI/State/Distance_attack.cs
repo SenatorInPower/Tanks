@@ -11,6 +11,7 @@ namespace Script.AI.States
         private TankState tank;
         public Distance_attack(TankState tank)
         {
+         
             this.tank = tank;
         }
         void MoveToPoint()

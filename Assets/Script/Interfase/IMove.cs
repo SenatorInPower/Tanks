@@ -2,7 +2,7 @@
 {
     public interface IMove
     {
-        public int Speed { get; set; }
+        public short Speed { get; set; }
        
     }
 }

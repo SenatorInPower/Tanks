@@ -3,6 +3,7 @@ using Script.AI.Controller;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Assets.Script.AI.Controller
 {
@@ -10,10 +11,10 @@ namespace Assets.Script.AI.Controller
     {
         
 
-        internal static Dictionary<int, TankState> Tanks;
+        internal static Dictionary<byte, TankState> Tanks;
 
         [SerializeField]
-        private Dictionary<State, int> CriateTankAtState;
+        private Dictionary<State, byte> CriateTankAtState;
 
         [SerializeField]
         private LevelInfo LevelInfo;
@@ -53,16 +54,17 @@ namespace Assets.Script.AI.Controller
         }
         void CriateEnemys()
         {
-            int tankID = 0;
+            byte tankID = 0;
             foreach (var item in CriateTankAtState)
             {
-                for (int i = 0; i < item.Value; i++)
+                for (byte i = 0; i < item.Value; i++)
                 {
                    
                   
                     GameObject enemysTank = Instantiate(TankEnemys, LevelInfo.RandomPositionInTerritory(), Quaternion.identity);
                     CollisionAction collisionAction = enemysTank.GetComponent<CollisionAction>();
-                    TankStats tankStats = new TankStats(stats, damageForElement, collisionAction);
+                    NavMeshAgent navMeshAgent=enemysTank.GetComponent<NavMeshAgent>();  
+                    TankStats tankStats = new TankStats(stats, navMeshAgent, damageForElement, collisionAction);
                     TankState tankState = new TankState(item.Key, tankStats, LevelInfo) ;
 
                     tankID++;
