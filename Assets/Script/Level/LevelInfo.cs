@@ -29,6 +29,7 @@ namespace Script.AI.Controller
         [ShowIf("State", State.Distance_attack)]
         private _DistanceAtack DistanceAtack;
 
+
         private struct _AllSettings
         {
             public BoxCollider territory;

@@ -123,6 +123,156 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &192422275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 192422277}
+  - component: {fileID: 192422276}
+  m_Layer: 0
+  m_Name: Tank Creation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &192422276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192422275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86712603784cd434385b64c6ed9d6225, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: CriateTankAtState
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[Script.AI.Controller.State,
+        Assembly-CSharp],[System.Int32, mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[Script.AI.Controller.State,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 3
+      Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: damageForElement
+      Entry: 7
+      Data: Script.AI.Controller.DamageForElement, Assembly-CSharp
+    - Name: LeftCaterpillar
+      Entry: 3
+      Data: 0
+    - Name: RightCaterpillar
+      Entry: 3
+      Data: 0
+    - Name: Frame
+      Entry: 3
+      Data: 0
+    - Name: Tower
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: stats
+      Entry: 7
+      Data: Script.AI.Controller.Stats, Assembly-CSharp
+    - Name: Speed
+      Entry: 3
+      Data: 0
+    - Name: HP
+      Entry: 3
+      Data: 0
+    - Name: Damage
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+  LevelInfo: {fileID: 1781282670}
+  TankPlayer: {fileID: 3794966398216994987, guid: ab25884a253d99c4b8a556f16fd7bc5e, type: 3}
+  TankEnemys: {fileID: 4598178591537329050, guid: a7cbb6818b4c27245b90e357a8b49e8c, type: 3}
+--- !u!4 &192422277
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192422275}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 156.16725, y: 133.66306, z: -66.50215}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &454148976
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -451,12 +601,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 715849846}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.3, y: 8.92, z: -2.1908078}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -81.86498, y: -52.99913, z: 17.52564}
   m_LocalScale: {x: 21.576647, y: 21.576647, z: 21.576647}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 1781282671}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &715849851
 MonoBehaviour:
@@ -760,10 +910,7 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 715849847}
-    - {fileID: 1123399758}
-    - {fileID: 633677529}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -773,8 +920,8 @@ MonoBehaviour:
       Entry: 7
       Data: Script.AI.Controller.LevelInfo+_AllSettings, Assembly-CSharp
     - Name: territory
-      Entry: 10
-      Data: 0
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -788,23 +935,7 @@ MonoBehaviour:
       Entry: 7
       Data: Script.AI.Controller.LevelInfo+_ZoneProtaction, Assembly-CSharp
     - Name: protectZone
-      Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[UnityEngine.BoxCollider, UnityEngine.PhysicsModule]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 10
-      Data: 1
-    - Name: 
-      Entry: 10
-      Data: 2
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
+      Entry: 6
       Data: 
     - Name: 
       Entry: 8
@@ -812,22 +943,16 @@ MonoBehaviour:
     - Name: Ram
       Entry: 7
       Data: Script.AI.Controller.LevelInfo+_Ram, Assembly-CSharp
-    - Name: particleRam
-      Entry: 6
-      Data: 
     - Name: 
       Entry: 8
       Data: 
     - Name: DistanceAtack
       Entry: 7
       Data: Script.AI.Controller.LevelInfo+_DistanceAtack, Assembly-CSharp
-    - Name: MinDistenceAtack
-      Entry: 3
-      Data: 30
     - Name: 
       Entry: 8
       Data: 
-  State: 1
+  State: 0
 --- !u!4 &1781282671
 Transform:
   m_ObjectHideFlags: 0
@@ -835,12 +960,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1781282669}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 95.164986, y: 61.91913, z: -19.716448}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 715849850}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1817122700
 GameObject:
@@ -873,7 +999,7 @@ Transform:
   - {fileID: 633677528}
   - {fileID: 938055320}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1836219974
 GameObject:
