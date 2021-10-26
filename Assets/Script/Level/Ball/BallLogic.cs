@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BallLogic : MonoBehaviour
 {
-    const byte koefDistSpeed = 1;
+    const byte koefDistSpeed = 3;
     internal byte accuracy = 15;   //random distance from the target
     public Transform target; public short damage; public short distanse;
 
@@ -24,22 +24,26 @@ public class BallLogic : MonoBehaviour
     {
         StartCoroutine(MoveTo(target.position, damage, distanse));
     }
-    public IEnumerator MoveTo(Vector3 target, short damage, short distanse)  //снаряд движется в рандомную позицию возле игрока имитируя погрешность
+    public IEnumerator MoveTo(Vector3 target, short damage, short MaxDistenseTank)  //снаряд движется в рандомную позицию возле игрока имитируя погрешность
     {
 
         transform.position = startsVector.position;    // вернули снаряд и дулу 
 
         Vector3 startPosBall = transform.position;   //сохраняем стартовую позицию
-        float distense_Time = Vector3.Distance(transform.position, target);  //определяем растоние до бьекта чтобы
-        distense_Time = Mathf.Lerp(0, 1, LevelInfo.MaxDistanseShut / distense_Time) * koefDistSpeed; //определяем скорость интерполяции с учетом дистанции
+        float distense_Time = Vector3.Distance(target, startPosBall);  //определяем растоние до бьекта чтобы
+
+
+
+        float TimeInterpolation = 0;      //переменная интерполяции по времени 
+        Vector3 targetNew = RendomPosNearTarget(ShutDistensePoint(MaxDistenseTank, target, distense_Time));      //случайная позиция стреляя по цели
+
+        distense_Time = Mathf.Lerp(0.1f,1, distense_Time/ LevelInfo.MaxDistanseShut) ; //определяем скорость интерполяции с учетом дистанции
                                                                                                      //( LevelInfo.MaxDistanseShut максимальное растояние с учетом размера карты)
                                                                                                      //умножая на коэффециент скорости       
-  
-        float TimeInterpolation = 0;      //переменная интерполяции по времени 
-        Vector3 targetNew = RendomPosNearTarget(ShutDistensePoint(distanse, target));      //случайная позиция стреляя по цели
+
         while (true)
         {
-            TimeInterpolation += Time.deltaTime * distense_Time;
+            TimeInterpolation += Time.deltaTime / distense_Time;
             transform.position = Vector3.Lerp(startPosBall, targetNew, TimeInterpolation);
             if (TimeInterpolation > 1)
             {
@@ -48,17 +52,22 @@ public class BallLogic : MonoBehaviour
             yield return null;
         }
     }
-    private Vector3 ShutDistensePoint(short distense, Vector3 target)     
+    private Vector3 ShutDistensePoint(short MaxDistenseTank, Vector3 target, float distenseToTarget)
     {
         Vector3 DistShut;                                                       //если дистанция до цели меньше максимальнйо дистанции задданой в состоянии танка, то стреляем в танк но с меньшим растояним
-        if (distense > Vector3.Distance(target, transform.position))
+
+        if (MaxDistenseTank > distenseToTarget)
         {
             DistShut = target;
         }
         else
         {
-            DistShut = (target - transform.position).normalized;
-            DistShut = DistShut * distense;
+
+            float dist = Mathf.Lerp(0.1f,1, MaxDistenseTank / distenseToTarget);
+            DistShut = target;
+            DistShut *= dist;
+            DistShut = new Vector3(DistShut.x, target.y, DistShut.z);
+
         }
 
 
