@@ -22,7 +22,7 @@ namespace Script.AI.Controller
 
         internal LevelInfo levelInfo;
 
-        internal ITankState _IState;
+        private ITankState _IState;
 
         internal BallAtack BallAtack;
         public TankState(State State, TankStats tankStats, LevelInfo levelInfo)
@@ -35,11 +35,11 @@ namespace Script.AI.Controller
         }
 
 
-        void SetStait(ITankState tankState)
+       private void SetStait(ITankState tankState)
         {
             _IState = tankState;
         }
-        public void StateInit(State state)
+        internal void StateInit(State state)
         {
             switch (state)
             {
@@ -63,7 +63,10 @@ namespace Script.AI.Controller
             }
         }
 
-
+        internal void Update(MonoBehaviour myMonoBehaviour)
+        {
+            myMonoBehaviour.StartCoroutine(_IState.Update(myMonoBehaviour));
+        }
 
 
 

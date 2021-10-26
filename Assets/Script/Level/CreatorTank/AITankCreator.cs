@@ -13,10 +13,10 @@ namespace Assets.Script.AI.Controller
 
         internal IHiroPosition hiroPosition;
 
-        internal static Dictionary<byte, TankState> EnemysTanks;
+        internal static Dictionary<short, TankState> EnemysTanks;
 
         [SerializeField]
-        private Dictionary<State, byte> CriateEnemysTankAtState;
+        private Dictionary<State, short> CriateEnemysTankAtState;
 
         [SerializeField]
         private LevelInfo LevelInfo;
@@ -58,7 +58,7 @@ namespace Assets.Script.AI.Controller
             if (EnemysTanks[tankID] != null)
             {
                 EnemysTanks[tankID].StateInit(state);
-                StartCoroutine(EnemysTanks[tankID]._IState.Update(this));
+                EnemysTanks[tankID].Update(this);
             }
         }
        
@@ -66,9 +66,11 @@ namespace Assets.Script.AI.Controller
 
      
         [Button]
+        [HideIf("CreateCheck")]
+
         void CreateEnemys()
         {
-            EnemysTanks = new Dictionary<byte, TankState>();
+            EnemysTanks = new Dictionary<short, TankState>();
             byte tankID = 0;
             foreach (var item in CriateEnemysTankAtState)
             {
@@ -86,10 +88,35 @@ namespace Assets.Script.AI.Controller
                     EnemysTanks.Add(tankID, tankState);
                 }
             }
-            UpdateAllTank();
+            UpdateAllTank();   //запустить обновления
 
         }
-
+        [ShowIf("CreateCheck")]
+        [Button]
+        private void UpdateAllState()
+        {
+            foreach (var item in CriateEnemysTankAtState)
+            {
+                for (byte i = 0; i < item.Value; i++)
+                {
+                    if (EnemysTanks[i] != null)
+                    {
+                        EnemysTanks[i].StateInit(item.Key);
+                    }
+                } 
+            
+            }
+                
+            
+        }
+      
+        private void UpdateAllTank()   // not use in loop!
+        {
+            foreach (TankState tank in EnemysTanks.Values)
+            {
+               tank.Update(this);
+            }
+        }
         private bool CreateCheck()
         {
             if (EnemysTanks != null)
@@ -99,14 +126,6 @@ namespace Assets.Script.AI.Controller
             else
             {
                 return false;
-            }
-        }
-        [ShowIf("CreateCheck")]
-        private void UpdateAllTank()   // not use in loop!
-        {
-            foreach (TankState tank in EnemysTanks.Values)
-            {
-                StartCoroutine(tank._IState.Update(this));
             }
         }
 
