@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Assets.Script.AI.State
+namespace Script.AI.State
 {
     public class Frize : ITankState
     {
