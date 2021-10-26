@@ -18,6 +18,7 @@ namespace Script.AI.States
         private List<TankState> _tanks;
         private WaitForSeconds wait = new WaitForSeconds(0.5f);
 
+        private int AddToVectorX;
         private List<TankState> tanks { get { if (_tanks == null) { _tanks = new List<TankState>(); } return _tanks; } set => _tanks = value; }
 
 
@@ -28,10 +29,10 @@ namespace Script.AI.States
             if (tank.levelInfo.LeadID() == tankCoordinatorCount)
             {
                 isLead = true;
-
             }
             else
             {
+                AddToVectorX += 5;
                 isLead = false;
             }
             tanks.Add(this.tank);
@@ -56,6 +57,7 @@ namespace Script.AI.States
                 }
                 else
                 {
+                    yield return myMonoBehaviour.StartCoroutine(Move(_tanks[tank.levelInfo.LeadID()].tankStats.NavMeshAgent.transform.position));
 
                 }
 
@@ -113,9 +115,10 @@ namespace Script.AI.States
                 }
                 else
                 {
-                    SetDestinationTank(lead.position);
+                    Vector3 UpdateLeadPos=new Vector3(lead.position.x+ AddToVectorX, lead.position.y, lead.position.z);   
+                    SetDestinationTank(UpdateLeadPos);
                 }
-                yield return new WaitForSeconds(0.5f);
+                yield return wait;
             }
         }
         void SetDestinationTank(Vector3 target)
