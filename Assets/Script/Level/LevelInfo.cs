@@ -6,6 +6,8 @@ namespace Script.AI.Controller
 {
     public class LevelInfo : SerializedMonoBehaviour
     {
+        public const int MaxDistanseShut = 100;
+
         [SerializeField]
         private _AllSettings AllSettings;
         [SerializeField]
