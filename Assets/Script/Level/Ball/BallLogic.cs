@@ -7,7 +7,7 @@ public class BallLogic : MonoBehaviour
 {
     const byte koefDistSpeed = 3;
     internal byte accuracy = 15;   //random distance from the target
-    public Transform target; public short damage; public short distanse;
+   // public Transform target; public short damage; public short distanse;
 
 
 
@@ -20,7 +20,7 @@ public class BallLogic : MonoBehaviour
     }
 
     [Button]
-    void testShut(/*Transform target, short damage, short distanse*/)
+    void testShut(Transform target, short damage, short distanse)
     {
         StartCoroutine(MoveTo(target.position, damage, distanse));
     }
