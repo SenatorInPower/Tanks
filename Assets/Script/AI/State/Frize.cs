@@ -20,15 +20,17 @@ namespace Script.AI.States
 
         }
 
-        public IEnumerator Move()
+     
+        public IEnumerator Move(Vector3 target)
         {
-           yield break;
+            yield break;
         }
 
-        public IEnumerator Update()
-        {
-           yield break;
+   
 
+        public IEnumerator Update(MonoBehaviour myMonoBehaviour)
+        {
+            yield break;
         }
     }
 }

@@ -11,6 +11,7 @@ namespace Script.AI.Controller
         public short Speed;
         public short HP;
         public short Damage;
+        public short Distanse;
     }
 
     public struct DamageForElement
@@ -21,7 +22,7 @@ namespace Script.AI.Controller
         public byte Tower;
     }
 
-    public class TankStats : IDisposable, IHP, IMove, IDamage
+    public class TankStats : IDisposable, IHP, IMove, IDamage, IDistanse
     {
         internal IHiroPosition hiroPosition;
         //[SerializeField]
@@ -37,7 +38,7 @@ namespace Script.AI.Controller
         public short HP { get => Stats.HP; set { Stats.HP = value; if (Stats.HP < 1) { Dead(); } } }
         public short MaxHP { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public short Damage { get => Stats.Damage; set => Stats.Damage = value; }
-
+        public short Distanse { get => Stats.Distanse; set => Stats.Distanse=value; }
 
         public TankStats(Stats Stats, NavMeshAgent NavMeshAgent, IHiroPosition hiroPosition, DamageForElement DamageForElement, CollisionAction collisionAction)
         {

@@ -6,7 +6,7 @@ using UnityEngine;
 public class BallLogic : MonoBehaviour
 {
     const byte koefDistSpeed = 3;
-    internal byte accuracy = 15;   //random distance from the target
+    internal byte accuracy = 6;   //random distance from the target
    // public Transform target; public short damage; public short distanse;
 
 
@@ -19,28 +19,23 @@ public class BallLogic : MonoBehaviour
         this.startsVector = startsVector;
     }
 
-    [Button]
-    void testShut(Transform target, short damage, short distanse)
+
+  public  void Shut(Vector3 target, short damage, short distanse)
     {
-        StartCoroutine(MoveTo(target.position, damage, distanse));
+        StartCoroutine(MoveTo(target, damage, distanse));
     }
     public IEnumerator MoveTo(Vector3 target, short damage, short MaxDistenseTank)  //снаряд движется в рандомную позицию возле игрока имитируя погрешность
     {
-
         transform.position = startsVector.position;    // вернули снаряд и дулу 
 
         Vector3 startPosBall = transform.position;   //сохраняем стартовую позицию
         float distense_Time = Vector3.Distance(target, startPosBall);  //определяем растоние до бьекта чтобы
-
-
 
         float TimeInterpolation = 0;      //переменная интерполяции по времени 
         Vector3 targetNew = RendomPosNearTarget(ShutDistensePoint(MaxDistenseTank, target, distense_Time));      //случайная позиция стреляя по цели
 
         distense_Time = Mathf.Lerp(0.1f,1, distense_Time/ LevelInfo.MaxDistanseShut) ; //определяем скорость интерполяции с учетом дистанции
                                                                                                      //( LevelInfo.MaxDistanseShut максимальное растояние с учетом размера карты)
-                                                                                                     //умножая на коэффециент скорости       
-
         while (true)
         {
             TimeInterpolation += Time.deltaTime / distense_Time;

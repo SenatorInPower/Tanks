@@ -37,7 +37,7 @@ namespace Assets.Script.AI.Controller
         [BoxGroup("Stats")]
         [ShowIf("NullCheck")]
         [SerializeField]
-        private Stats stats;
+        private Stats stats;          
 
         private bool NullCheck()
         {
@@ -50,17 +50,23 @@ namespace Assets.Script.AI.Controller
                 return false;
             }
         }
-
+        [ShowIf("CreateCheck")]
         [Button]
-        void SetState(State state, byte tankID)
+        void SetState(State state, byte tankID)  // изменить состояние у одного
         {
+           
             if (EnemysTanks[tankID] != null)
             {
                 EnemysTanks[tankID].StateInit(state);
+                StartCoroutine(EnemysTanks[tankID]._IState.Update(this));
             }
         }
+       
+       
 
-        void CriateEnemys()
+     
+        [Button]
+        void CreateEnemys()
         {
             EnemysTanks = new Dictionary<byte, TankState>();
             byte tankID = 0;
@@ -80,13 +86,27 @@ namespace Assets.Script.AI.Controller
                     EnemysTanks.Add(tankID, tankState);
                 }
             }
+            UpdateAllTank();
 
         }
-        private void UpdateAllTank()
+
+        private bool CreateCheck()
+        {
+            if (EnemysTanks != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        [ShowIf("CreateCheck")]
+        private void UpdateAllTank()   // not use in loop!
         {
             foreach (TankState tank in EnemysTanks.Values)
             {
-                StartCoroutine(tank._IState.Update());
+                StartCoroutine(tank._IState.Update(this));
             }
         }
 

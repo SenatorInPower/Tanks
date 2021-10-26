@@ -10,6 +10,8 @@ public class TestMoveEndRotation : MonoBehaviour
     public Transform Hiro;
     public NavMeshAgent NavMeshAgent;
     public BoxCollider territory;
+    public BallLogic BallLogic;
+
 
     void Start()
     {
@@ -30,7 +32,8 @@ public class TestMoveEndRotation : MonoBehaviour
     }
     public IEnumerator Atack()
     {
-        throw new System.NotImplementedException();
+        BallLogic.Shut(Hiro.position, 20, 100) ;
+        yield break;
     }
     [Button]
     void testRot()
@@ -38,9 +41,7 @@ public class TestMoveEndRotation : MonoBehaviour
         StartCoroutine(Update());
     }
     //transform.RotateAround(pivotPoint, Vector3.up, 90);
-    public float angleX;
-    public float angleY;
-    public float radius = 10;
+
     IEnumerator Rotation()
     {
         Vector3 RotTo = Hiro.position - transform.position;
@@ -50,7 +51,7 @@ public class TestMoveEndRotation : MonoBehaviour
         float timeLerp = 0;
         while (true)
         {
-            timeLerp += Time.deltaTime / 3;
+            timeLerp += Time.deltaTime ;
 
 
             transform.rotation = Quaternion.Lerp(rotTank, targetRotation, timeLerp); ;
@@ -63,9 +64,9 @@ public class TestMoveEndRotation : MonoBehaviour
         }
     }
 
-    public IEnumerator Move(Vector3 to)
+    public IEnumerator Move(Vector3 targetPoint)
     {
-        SetDestinationTank(to);
+        SetDestinationTank(targetPoint);
         yield return new WaitForSeconds(0.1f);
         while (true)
         {
@@ -84,6 +85,7 @@ public class TestMoveEndRotation : MonoBehaviour
         {
             yield return StartCoroutine(Move(RandomPositionInTerritory()));
             yield return StartCoroutine(Rotation());
+            yield return StartCoroutine(Atack());
         }
     }
     internal Vector3 RandomPositionInTerritory()
