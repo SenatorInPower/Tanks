@@ -1,26 +1,35 @@
-using Assets.Script.AI;
 using System.Collections;
 using System.Collections.Generic;
+using Script.AI.Controller;
 using TankInterface;
 using UnityEngine;
-namespace TankState
+namespace Script.AI.States
 {
-    public class Distance_attack : ITankState, IHP
+    public class Distance_attack : ITankState
     {
-        private int _HP;
-        public int HP { get => _HP; set => _HP = value; }
-
-        private int _maxHP;
-        public int MaxHP { get => _maxHP; set => _maxHP = value; }
-        private Tank tank;
-        public Distance_attack(Tank tank)
-        {
+       
+        private TankState tank;
+        public Distance_attack(TankState tank)
+        {         
             this.tank = tank;
         }
+        void MoveToPoint()
+        {
 
+        }
         public IEnumerator Update()
         {
-            throw new System.NotImplementedException();
+            throw new System.NotImplementedException();//стреляет на определенной дистации и меняет позицию
+        }
+
+        public IEnumerator Atack()
+        {
+            throw new System.NotImplementedException();// стреляет на своей дистанции если попадут в ответ ,то сменить позицию
+        }
+
+        public IEnumerator Move()
+        {
+            throw new System.NotImplementedException();// меняет позицию после попадания
         }
     }
 }

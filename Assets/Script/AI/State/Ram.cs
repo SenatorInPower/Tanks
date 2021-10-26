@@ -1,27 +1,52 @@
-using Assets.Script.AI;
+using Script.AI.Controller;
 using System.Collections;
 using System.Collections.Generic;
 using TankInterface;
 using UnityEngine;
-namespace TankState
+using UnityEngine.AI;
+
+namespace Script.AI.States
 {
-    public class Ram : ITankState, IHP
+    public class Ram : ITankState
     {
-        private int _HP;
-        public int HP { get => _HP; set => _HP = value; }
-
-        private int _maxHP;
-        public int MaxHP { get => _maxHP; set => _maxHP = value; }
-
-        private Tank tank;
-        public Ram(Tank tank)
+       
+       
+        private TankState tank;
+        public Ram(TankState tank)
         {
-            this.tank = tank;   
+           this.tank = tank;   
         }
 
-        IEnumerator ITankState.Update()
+
+       
+        void SetDestinationTank(Vector3 target)
         {
-            throw new System.NotImplementedException();
+            tank.tankStats.NavMeshAgent.SetDestination(target);
+        }
+        void StopAgent()
+        {
+            tank.tankStats.NavMeshAgent.isStopped = true;
+        }
+        public IEnumerator Update()
+        {
+            yield return null; //двигается на врага и таранит его
+        }
+
+        public IEnumerator Atack()
+        {
+            throw new System.NotImplementedException(); // таранит врага
+        }
+
+        public IEnumerator Move()
+        {
+            while (true)  //двигается на врага 
+            {
+                if (!(NavMeshPathStatus.PathComplete == tank.tankStats.NavMeshAgent.pathStatus))
+                {
+                    SetDestinationTank(tank.tankStats.hiroPosition.TransformHiro.position);
+                }
+                yield return new WaitForSeconds(1);
+            }
         }
     }
 }

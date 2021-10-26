@@ -1,30 +1,55 @@
-using Assets.Script.AI;
-using System;
+
+using Script.AI.Controller;
 using System.Collections;
 using System.Collections.Generic;
-using TankInterface;
+using UnityEngine;
+using UnityEngine.AI;
 
-namespace TankState
+namespace Script.AI.States
 {
+
     public class Coordinator : ITankState
     {
-       
-        private Tank tank;
+
+       private TankState tank;
         static bool theLead;
         //private static Coordinator Coordinators { get; set; }
-        static List<Tank> tanks;
-     
+        static List<TankState> tanks;
 
-        public Coordinator(List<Tank> tanks, Tank tankCoordinator )
+
+        public Coordinator(List<TankState> tanks, TankState tankCoordinator)
         {
-            
-            this.tank = tankCoordinator;
-          
-        }
 
+            this.tank = tankCoordinator;
+
+        }
+      
+
+    
+        void SetDestinationTank(Vector3 target)
+        {
+            tank.tankStats.NavMeshAgent.SetDestination(target);
+        }
+        void StopAgent()
+        {
+            tank.tankStats.NavMeshAgent.isStopped=true;
+        }
         public IEnumerator Update()
         {
+            yield return null;  //цикл движение => постоянная атака
+        }
+
+        public IEnumerator Atack()
+        {
             yield return null;
+             //стреляет после сплочения, через определенный период времени
+        }
+
+        public IEnumerator Move()
+        {
+            yield return null;
+           //двигается в среднюю точку между танками
+           //противника и обьеденяясь двигается армадой на героя
         }
     }
 }

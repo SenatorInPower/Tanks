@@ -1,27 +1,43 @@
-using Assets.Script.AI;
+using Script.AI.Controller;
 using System.Collections;
 using System.Collections.Generic;
 using TankInterface;
 using UnityEngine;
-namespace TankState
+namespace Script.AI.States
 {
-    public class Zone_protection : ITankState, IHP
-    {
-        private int _HP;
-        public int HP { get => _HP; set => _HP = value; }
-
-        private int _maxHP;
-        public int MaxHP { get => _maxHP; set => _maxHP = value; }
-
-        private Tank tank;
-        public Zone_protection(Tank tank)
+    public class Zone_protection : ITankState
+    {   
+        
+        private TankState tank;
+        public Zone_protection(TankState tank)
         {
             this.tank = tank;
         }
 
+        void SetDestinationTank(Vector3 target)
+        {
+            tank.tankStats.NavMeshAgent.SetDestination(target);
+        }
+        void StopAgent()
+        {
+            tank.tankStats.NavMeshAgent.isStopped = true;
+        }
+        public IEnumerator Atack()
+        {
+            throw new System.NotImplementedException();  //стреляет после возьезда в зону на
+                                                         //свою дистанцию ,если не
+                                                         //дастает стреляет просто так
+                                                         //в сторону игрока
+        }
+
+        public IEnumerator Move()
+        {
+            throw new System.NotImplementedException();// двигается к оборонительным позициям
+        }
+
         public IEnumerator Update()
         {
-            
+            yield return null;// пришел в позицию , стреляет,меняет позицию
         }
     }
 }
