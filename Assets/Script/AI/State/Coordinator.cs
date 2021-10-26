@@ -41,11 +41,13 @@ namespace Script.AI.States
 
         public IEnumerator Atack()
         {
+            yield return null;
              //стреляет после сплочения, через определенный период времени
         }
 
         public IEnumerator Move()
         {
+            yield return null;
            //двигается в среднюю точку между танками
            //противника и обьеденяясь двигается армадой на героя
         }

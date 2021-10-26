@@ -1,11 +1,19 @@
 ﻿using Script.AI;
+using Script.AI.Controller;
 using System.Collections;
 using UnityEngine;
 
-namespace Script.AI.State
+namespace Script.AI.States
 {
     public class Frize : ITankState
     {
+        private TankState tank;
+
+        public Frize(TankState tank)
+        {
+            this.tank = tank;
+        }
+
         public IEnumerator Atack()
         {
            yield break;

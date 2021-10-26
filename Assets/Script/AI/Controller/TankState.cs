@@ -55,8 +55,9 @@ namespace Script.AI.Controller
                 case State.Zone_protection:
                     _IState = new Zone_protection(this);
                     break;
-                    case State.Frize:
-                        _IState = new Frize(this);
+                case State.Frize:
+                    _IState = new Frize(this);
+                    break;
                 default:
                     break;
             }
